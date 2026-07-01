@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sh•eld – Parent App</title>
+    <style>
+      :root {
+        --green: #3fa15a;
+        --green-bright: #4fbf6c;
+        --green-dark: #2b7040;
+        --bg: #0c0d0f;
+        --card: #17191d;
+        --card-2: #1e2127;
+        --ink: #f3f4f5;
+        --muted: #8b929b;
+        --line: #26292f;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 16px;
+        background: #2a2d31;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--ink);
+      }
+
+      /* ===== Phone frame ===== */
+      .phone {
+        position: relative;
+        width: 390px;
+        height: 844px;
+        background: #000;
+        border-radius: 56px;
+        padding: 12px;
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55),
+          inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+      }
+
+      .screen {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: var(--bg);
+        border-radius: 46px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .island {
+        position: absolute;
+        top: 11px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 122px;
+        height: 34px;
+        background: #000;
+        border-radius: 20px;
+        z-index: 20;
+      }
+
+      /* Status bar */
+      .statusbar {
+        height: 54px;
+        flex: 0 0 auto;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: 0 26px 6px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+        z-index: 10;
+      }
+
+      .statusbar .icons {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* Scrollable content */
+      .content {
+        flex: 1 1 auto;
+        overflow-y: auto;
+        padding: 8px 20px 20px;
+      }
+
+      .content::-webkit-scrollbar {
+        display: none;
+      }
+
+      .greeting {
+        font-size: 15px;
+        color: var(--muted);
+        margin: 6px 0 2px;
+      }
+
+      .title {
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 0 0 18px;
+      }
+
+      /* Child profile card */
+      .profile {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 14px 16px;
+      }
+
+      .avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(160deg, #4aa863, #256437);
+        color: #fff;
+        font-size: 22px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+      }
+
+      .profile .info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .profile .name {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .profile .device {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .profile .switch {
+        color: var(--muted);
+      }
+
+      /* ===== WHOOP-style ring hero ===== */
+      .hero {
+        margin-top: 16px;
+        background: radial-gradient(
+            120% 80% at 50% 0%,
+            rgba(63, 161, 90, 0.16),
+            transparent 60%
+          ),
+          linear-gradient(180deg, #14161a, #0e0f12);
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        padding: 26px 20px 22px;
+      }
+
+      .date-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        margin-bottom: 20px;
+      }
+
+      .date-nav span {
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.28em;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+
+      .date-nav button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        color: var(--muted);
+      }
+
+      /* three rings row */
+      .rings {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: start;
+        gap: 6px;
+      }
+
+      .ring-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .ring {
+        position: relative;
+        width: 92px;
+        height: 92px;
+      }
+
+      .ring svg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+      }
+
+      .ring .prog {
+        stroke-dashoffset: 263.9;
+        animation: fill 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .ring .prog.p1 {
+        --target: 0;
+      }
+      .ring .prog.p2 {
+        --target: 58;
+        animation-delay: 0.12s;
+      }
+      .ring .prog.p3 {
+        --target: 174;
+        animation-delay: 0.24s;
+      }
+
+      @keyframes fill {
+        from {
+          stroke-dashoffset: 263.9;
+        }
+        to {
+          stroke-dashoffset: var(--target);
+        }
+      }
+
+      .ring-center {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .ring-center .val {
+        font-size: 26px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .ring-center .check {
+        width: 30px;
+        height: 30px;
+      }
+
+      .ring-label {
+        margin-top: 12px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      /* WHOOP-style status blurb */
+      .blurb {
+        margin-top: 22px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+      }
+
+      .blurb .b-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--green-bright);
+        margin-bottom: 4px;
+      }
+
+      .blurb .b-text {
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      /* Section heading */
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin: 24px 4px 12px;
+      }
+
+      .section-head h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .section-head a {
+        font-size: 14px;
+        color: var(--green-bright);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      /* Highlight row */
+      .highlight {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 16px;
+      }
+
+      .highlight .badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(63, 161, 90, 0.14);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+      }
+
+      .highlight .badge svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .highlight .h-title {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .highlight .h-sub {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* Bottom nav */
+      .tabbar {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 8px 26px;
+        background: rgba(12, 13, 15, 0.85);
+        backdrop-filter: saturate(180%) blur(20px);
+        border-top: 1px solid var(--line);
+      }
+
+      .tab {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--muted);
+        flex: 1;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .tab svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .tab.active {
+        color: var(--green-bright);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="screen">
+        <div class="island"></div>
+
+        <!-- Status bar -->
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+              <rect x="0" y="7" width="3" height="5" rx="1" fill="#f3f4f5" />
+              <rect x="5" y="4.5" width="3" height="7.5" rx="1" fill="#f3f4f5" />
+              <rect x="10" y="2" width="3" height="10" rx="1" fill="#f3f4f5" />
+              <rect x="15" y="0" width="3" height="12" rx="1" fill="#f3f4f5" />
+            </svg>
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+              <path d="M8.5 2C11.6 2 14.4 3.2 16.4 5.2" stroke="#f3f4f5"
+                stroke-width="1.6" stroke-linecap="round" />
+              <path d="M3.6 6.3C4.9 5 6.6 4.2 8.5 4.2s3.6.8 4.9 2.1"
+                stroke="#f3f4f5" stroke-width="1.6" stroke-linecap="round" />
+              <circle cx="8.5" cy="9.6" r="1.4" fill="#f3f4f5" />
+            </svg>
+            <svg width="26" height="13" viewBox="0 0 26 13" fill="none">
+              <rect x="0.5" y="0.5" width="22" height="12" rx="3.5"
+                stroke="#f3f4f5" stroke-opacity="0.4" />
+              <rect x="2.5" y="2.5" width="15" height="8" rx="2" fill="#f3f4f5" />
+              <rect x="24" y="4" width="1.6" height="5" rx="0.8"
+                fill="#f3f4f5" fill-opacity="0.4" />
+            </svg>
+          </span>
+        </div>
+
+        <!-- Scrollable content -->
+        <div class="content">
+          <p class="greeting">Good morning, Sarah</p>
+          <h1 class="title">Home</h1>
+
+          <!-- Child profile -->
+          <div class="profile">
+            <div class="avatar">E</div>
+            <div class="info">
+              <div class="name">Emma</div>
+              <div class="device">iPhone 13 · Age 11</div>
+            </div>
+            <span class="switch">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="m9 6 6 6-6 6" stroke="#8b929b" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+
+          <!-- WHOOP-style three-ring hero -->
+          <div class="hero">
+            <div class="date-nav">
+              <button aria-label="Previous day">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="m15 6-6 6 6 6" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+              <span>Today</span>
+              <button aria-label="Next day">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="m9 6 6 6-6 6" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+
+            <svg width="0" height="0" style="position: absolute">
+              <defs>
+                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#4fbf6c" />
+                  <stop offset="1" stop-color="#2b7040" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <div class="rings">
+              <!-- Connected -->
+              <div class="ring-item">
+                <div class="ring">
+                  <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none"
+                      stroke="#24272d" stroke-width="8" />
+                    <circle class="prog p1" cx="50" cy="50" r="42" fill="none"
+                      stroke="url(#ringGrad)" stroke-width="8"
+                      stroke-linecap="round"
+                      stroke-dasharray="263.9" />
+                  </svg>
+                  <div class="ring-center">
+                    <svg class="check" viewBox="0 0 24 24" fill="none">
+                      <path d="m6 12.5 3.5 3.5 8.5-9" stroke="#4fbf6c"
+                        stroke-width="2.4" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="ring-label">Connected</div>
+              </div>
+
+              <!-- Blurred -->
+              <div class="ring-item">
+                <div class="ring">
+                  <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none"
+                      stroke="#24272d" stroke-width="8" />
+                    <circle class="prog p2" cx="50" cy="50" r="42" fill="none"
+                      stroke="url(#ringGrad)" stroke-width="8"
+                      stroke-linecap="round"
+                      stroke-dasharray="263.9" />
+                  </svg>
+                  <div class="ring-center"><span class="val">27</span></div>
+                </div>
+                <div class="ring-label">Blurred</div>
+              </div>
+
+              <!-- Attempts -->
+              <div class="ring-item">
+                <div class="ring">
+                  <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none"
+                      stroke="#24272d" stroke-width="8" />
+                    <circle class="prog p3" cx="50" cy="50" r="42" fill="none"
+                      stroke="url(#ringGrad)" stroke-width="8"
+                      stroke-linecap="round"
+                      stroke-dasharray="263.9" />
+                  </svg>
+                  <div class="ring-center"><span class="val">3</span></div>
+                </div>
+                <div class="ring-label">Attempts</div>
+              </div>
+            </div>
+
+            <!-- status blurb -->
+            <div class="blurb">
+              <div class="b-title">Fully Protected</div>
+              <div class="b-text">
+                All filters are active on Emma's device. Today sh•eld blurred
+                27 items and blocked 3 attempts to reach explicit content.
+              </div>
+            </div>
+          </div>
+
+          <!-- Today's activity -->
+          <div class="section-head">
+            <h2>Today's activity</h2>
+            <a href="#">See all</a>
+          </div>
+
+          <div class="highlight">
+            <div class="badge">
+              <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="#4fbf6c"
+                  stroke-width="1.7" />
+                <path d="m5.6 5.6 12.8 12.8" stroke="#4fbf6c"
+                  stroke-width="1.7" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div>
+              <div class="h-title">3 attempts blocked today</div>
+              <div class="h-sub">Last blocked at 2:14 PM · web browser</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom nav -->
+        <nav class="tabbar">
+          <button class="tab active">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 11 12 4l8 7" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M6 10v9h12v-9" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Home
+          </button>
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6 9a6 6 0 0 1 12 0c0 4 1 5.5 1.8 6.4H4.2C5 14.5 6 13 6 9Z"
+                stroke="currentColor" stroke-width="1.8"
+                stroke-linejoin="round" />
+              <path d="M10 19a2 2 0 0 0 4 0" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            Alerts
+          </button>
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 15l4-4 3 3 5-6 4 4" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Activity
+          </button>
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="3" stroke="currentColor"
+                stroke-width="1.8" />
+              <path
+                d="M19 12a7 7 0 0 0-.1-1.2l1.9-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2l-.3-2.4H8.8l-.3 2.4a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4L4 10.8a7 7 0 0 0 0 2.4l-1.9 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2l.3 2.4h4.4l.3-2.4a7 7 0 0 0 2-1.2l2.3.9 2-3.4-1.9-1.5c.1-.4.1-.8.1-1.2Z"
+                stroke="currentColor" stroke-width="1.5"
+                stroke-linejoin="round" />
+            </svg>
+            Settings
+          </button>
+        </nav>
+      </div>
+    </div>
+  </body>
+</html>
