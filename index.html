@@ -266,6 +266,20 @@
         color: var(--green-bright);
       }
 
+      .error {
+        display: none;
+        position: relative;
+        margin: 18px auto 0;
+        font-size: 15px;
+        font-weight: 600;
+        color: #f0857a;
+      }
+
+      form button:disabled {
+        opacity: 0.65;
+        cursor: default;
+      }
+
       /* Footer */
       footer {
         text-align: center;
@@ -404,6 +418,9 @@
         <p class="success" id="success">
           ✅ You're on the list! We'll be in touch soon.
         </p>
+        <p class="error" id="error">
+          ⚠️ Something went wrong. Please try again.
+        </p>
         <p class="form-note">No spam. We'll only email you about sh•eld.</p>
       </section>
 
@@ -411,14 +428,42 @@
     </div>
 
     <script>
-      // Simple front-end demo: shows a confirmation on submit.
-      // Wire this up to a real email backend when ready.
+      // Paste the ID from your Formspree endpoint here (the part after /f/).
+      // e.g. "https://formspree.io/f/abcdwxyz"  ->  "abcdwxyz"
+      const FORMSPREE_FORM_ID = "mrewypvq";
+
       const form = document.getElementById("waitlist-form");
       const success = document.getElementById("success");
-      form.addEventListener("submit", function (e) {
+      const error = document.getElementById("error");
+      const button = form.querySelector("button");
+
+      form.addEventListener("submit", async function (e) {
         e.preventDefault();
-        form.style.display = "none";
-        success.style.display = "block";
+        error.style.display = "none";
+        button.disabled = true;
+        button.textContent = "Joining…";
+
+        try {
+          const res = await fetch(
+            "https://formspree.io/f/" + FORMSPREE_FORM_ID,
+            {
+              method: "POST",
+              headers: { Accept: "application/json" },
+              body: new FormData(form),
+            }
+          );
+
+          if (res.ok) {
+            form.style.display = "none";
+            success.style.display = "block";
+          } else {
+            throw new Error("Request failed");
+          }
+        } catch (err) {
+          error.style.display = "block";
+          button.disabled = false;
+          button.textContent = "Join the waitlist";
+        }
       });
     </script>
   </body>
