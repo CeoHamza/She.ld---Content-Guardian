@@ -1,25 +1,37 @@
-# Content Guardian
+# She.ld – Content Guardian
 
-Content Guardian is a web app designed to help families monitor and protect children from inappropriate online content. The app provides a simple foundation for adding content filtering, usage monitoring, and safety insights in a clear dashboard experience.
+**She.ld** is a parental safety app that blocks explicit content on a child's device and alerts parents the moment access is attempted. It's built to stay on — designed so it can't be easily disabled or uninstalled by the child.
 
-## Features
+## What it does
 
-- Parent-focused content protection workflow
-- Simple monitoring dashboard structure
-- Easy extension points for filters, alerts, and reporting
+- **Blocks explicit content** — filters and stops adult and harmful material before it reaches the screen.
+- **Alerts parents in real time** — notifies you whenever your child tries to access blocked content.
+- **Tamper-resistant** — protected so a child can't simply switch it off, uninstall it, or work around it.
+- **Built for peace of mind** — quietly protects in the background so kids can use their devices safely.
 
 ## Project Structure
 
-- `index.html` – starter web page
-- `README.md` – project overview and setup notes
+- `index.html` – landing page for parents with a waitlist signup
+- `README.md` – project overview
 - `.gitignore` – ignores common Node.js artifacts
 
 ## Getting Started
 
-Open `index.html` in a browser to view the starter page.
+Open `index.html` in any web browser to view the landing page:
 
-## Next Steps
+```bash
+open index.html
+```
 
-- Add UI components for content monitoring
-- Connect to a backend or API for filtering rules
-- Implement authentication and safety settings for parents
+## Roadmap
+
+- Wire the waitlist form to an email backend (e.g. a form service or API)
+- Build the device-side content filtering engine
+- Add the parent alert/notification system
+- Add a parent dashboard for settings and activity
+
+## Status
+
+Early stage — currently a waitlist landing page while the product is built.
+</content>
+</invoke>

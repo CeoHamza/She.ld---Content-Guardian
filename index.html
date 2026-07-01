@@ -3,12 +3,423 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content Guardian</title>
+    <title>sh•eld – Content Guardian</title>
+    <style>
+      :root {
+        --bg: #0c0d0f;
+        --bg-soft: #131417;
+        --panel: #16181c;
+        --panel-2: #1b1e23;
+        --border: #262a30;
+        --ink: #f4f5f6;
+        --muted: #9aa1aa;
+        --green: #3fa15a;
+        --green-bright: #4fbf6c;
+        --green-dark: #2b7040;
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        color: var(--ink);
+        background: radial-gradient(
+            1000px 600px at 50% -10%,
+            rgba(63, 161, 90, 0.14),
+            transparent 60%
+          ),
+          var(--bg);
+        line-height: 1.6;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Header + logo */
+      header {
+        padding: 26px 0;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .logo .mark {
+        width: 46px;
+        height: 46px;
+        border-radius: 13px;
+        background: linear-gradient(160deg, #4aa863, #256437);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 16px rgba(43, 112, 64, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      }
+
+      .logo .mark svg {
+        width: 26px;
+        height: 26px;
+      }
+
+      .logo .wordmark {
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+      }
+
+      .logo .wordmark .dot {
+        display: inline-block;
+        width: 0.21em;
+        height: 0.21em;
+        border-radius: 50%;
+        background: var(--green-bright);
+        vertical-align: 0.48em;
+        margin: 0 0.07em;
+      }
+
+      /* Hero */
+      .hero {
+        text-align: center;
+        padding: 48px 0 60px;
+      }
+
+      .badge {
+        display: inline-block;
+        background: rgba(63, 161, 90, 0.12);
+        border: 1px solid rgba(63, 161, 90, 0.35);
+        color: var(--green-bright);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 999px;
+        margin-bottom: 24px;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+        margin: 0 0 20px;
+      }
+
+      .hero h1 .hl {
+        color: var(--green-bright);
+      }
+
+      .hero p.lead {
+        font-size: 19px;
+        color: var(--muted);
+        max-width: 640px;
+        margin: 0 auto 34px;
+      }
+
+      /* Feature cards */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin: 0 0 60px;
+      }
+
+      .card {
+        background: linear-gradient(180deg, var(--panel-2), var(--panel));
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 26px 22px;
+      }
+
+      .card .icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        background: rgba(63, 161, 90, 0.14);
+        border: 1px solid rgba(63, 161, 90, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+      }
+
+      .card .icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 17px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      /* Signup */
+      .signup {
+        position: relative;
+        background: linear-gradient(180deg, var(--panel-2), var(--panel));
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 46px 32px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .signup::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          600px 260px at 50% 0%,
+          rgba(63, 161, 90, 0.18),
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .signup h2 {
+        position: relative;
+        margin: 0 0 10px;
+        font-size: 28px;
+        letter-spacing: -0.02em;
+      }
+
+      .signup p {
+        position: relative;
+        margin: 0 auto 26px;
+        max-width: 500px;
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      form {
+        position: relative;
+        display: flex;
+        gap: 10px;
+        max-width: 460px;
+        margin: 0 auto;
+      }
+
+      form input[type="email"] {
+        flex: 1;
+        padding: 14px 16px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: 15px;
+        outline: none;
+        background: #0e0f12;
+        color: var(--ink);
+      }
+
+      form input[type="email"]::placeholder {
+        color: #6b727b;
+      }
+
+      form input[type="email"]:focus {
+        border-color: var(--green);
+        box-shadow: 0 0 0 3px rgba(63, 161, 90, 0.22);
+      }
+
+      form button {
+        padding: 14px 22px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(160deg, #4aa863, #2b7040);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: filter 0.15s ease;
+      }
+
+      form button:hover {
+        filter: brightness(1.08);
+      }
+
+      .form-note {
+        position: relative;
+        margin: 16px 0 0;
+        font-size: 13px;
+        color: #6b727b;
+      }
+
+      .success {
+        display: none;
+        position: relative;
+        margin: 18px auto 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--green-bright);
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        color: #6b727b;
+        font-size: 14px;
+        padding: 44px 0 48px;
+        border-top: 1px solid var(--border);
+        margin-top: 60px;
+      }
+
+      /* Responsive */
+      @media (max-width: 720px) {
+        .hero h1 {
+          font-size: 34px;
+        }
+        .features {
+          grid-template-columns: 1fr;
+        }
+        form {
+          flex-direction: column;
+        }
+      }
+    </style>
   </head>
   <body>
-    <main>
-      <h1>Content Guardian</h1>
-      <p>Your starter web app is ready.</p>
-    </main>
+    <div class="wrap">
+      <header>
+        <div class="logo">
+          <span class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z"
+                fill="#ffffff"
+                fill-opacity="0.16"
+                stroke="#ffffff"
+                stroke-width="1.1"
+                stroke-opacity="0.55"
+              />
+              <path
+                d="m8.2 12.1 2.6 2.6 5-5.2"
+                stroke="#ffffff"
+                stroke-width="2.1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <span class="wordmark">sh<span class="dot"></span>eld</span>
+        </div>
+      </header>
+
+      <section class="hero">
+        <span class="badge">Coming soon · Join the waitlist</span>
+        <h1>
+          Keep explicit content <span class="hl">off</span> your child's device.
+        </h1>
+        <p class="lead">
+          sh•eld blocks adult and harmful content before it reaches the screen —
+          and alerts you the moment your child tries to access it. Built to stay
+          on, so it can't be easily switched off or removed.
+        </p>
+      </section>
+
+      <section class="features">
+        <div class="card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2.5" y="4" width="19" height="13" rx="2"
+                stroke="#4fbf6c" stroke-width="1.6" />
+              <path d="M8 20.5h8" stroke="#4fbf6c" stroke-width="1.6"
+                stroke-linecap="round" />
+              <circle cx="12" cy="10.5" r="4.2" stroke="#4fbf6c"
+                stroke-width="1.6" />
+              <path d="m9.4 7.9 5.2 5.2" stroke="#4fbf6c" stroke-width="1.6"
+                stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>Blocks explicit content</h3>
+          <p>
+            Filters and stops adult and harmful material automatically, before it
+            ever loads on your child's device.
+          </p>
+        </div>
+        <div class="card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9a6 6 0 0 1 12 0c0 4 1.2 5.6 2 6.5H4c.8-.9 2-2.5 2-6.5Z"
+                stroke="#4fbf6c" stroke-width="1.6" stroke-linejoin="round" />
+              <path d="M10 19a2 2 0 0 0 4 0" stroke="#4fbf6c"
+                stroke-width="1.6" stroke-linecap="round" />
+              <circle cx="18" cy="5.5" r="3" fill="#4fbf6c" />
+            </svg>
+          </div>
+          <h3>Alerts you instantly</h3>
+          <p>
+            Get a real-time notification whenever access to blocked content is
+            attempted — so nothing slips by unnoticed.
+          </p>
+        </div>
+        <div class="card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2.5 5 5.2v5.3c0 4 2.8 7 7 8.5 4.2-1.5 7-4.5 7-8.5V5.2L12 2.5Z"
+                stroke="#4fbf6c" stroke-width="1.6" stroke-linejoin="round" />
+              <rect x="9" y="10.2" width="6" height="5" rx="1"
+                stroke="#4fbf6c" stroke-width="1.5" />
+              <path d="M10.2 10.2V9a1.8 1.8 0 0 1 3.6 0v1.2"
+                stroke="#4fbf6c" stroke-width="1.5" />
+            </svg>
+          </div>
+          <h3>Can't be turned off</h3>
+          <p>
+            Tamper-resistant by design. Your child can't simply disable,
+            uninstall, or work around the protection.
+          </p>
+        </div>
+      </section>
+
+      <section class="signup">
+        <h2>Be the first to protect your family</h2>
+        <p>
+          Join the waitlist and we'll email you the moment sh•eld is ready for
+          your family's devices.
+        </p>
+        <form id="waitlist-form">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+            aria-label="Email address"
+          />
+          <button type="submit">Join the waitlist</button>
+        </form>
+        <p class="success" id="success">
+          ✅ You're on the list! We'll be in touch soon.
+        </p>
+        <p class="form-note">No spam. We'll only email you about sh•eld.</p>
+      </section>
+
+      <footer>© 2026 sh•eld · Content Guardian — protecting kids online.</footer>
+    </div>
+
+    <script>
+      // Simple front-end demo: shows a confirmation on submit.
+      // Wire this up to a real email backend when ready.
+      const form = document.getElementById("waitlist-form");
+      const success = document.getElementById("success");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        form.style.display = "none";
+        success.style.display = "block";
+      });
+    </script>
   </body>
 </html>
