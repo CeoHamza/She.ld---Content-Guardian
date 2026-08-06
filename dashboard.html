@@ -28,7 +28,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 32px 16px;
+        flex-wrap: wrap;
+        gap: 48px;
+        padding: 40px 16px;
         background: #2a2d31;
         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
           "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -123,6 +125,7 @@
         border: 1px solid var(--line);
         border-radius: 20px;
         padding: 14px 16px;
+        margin-top: 16px;
       }
 
       .avatar {
@@ -225,28 +228,8 @@
 
       .ring .prog {
         stroke-dashoffset: 263.9;
-        animation: fill 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      }
-
-      .ring .prog.p1 {
-        --target: 0;
-      }
-      .ring .prog.p2 {
-        --target: 58;
-        animation-delay: 0.12s;
-      }
-      .ring .prog.p3 {
-        --target: 174;
-        animation-delay: 0.24s;
-      }
-
-      @keyframes fill {
-        from {
-          stroke-dashoffset: 263.9;
-        }
-        to {
-          stroke-dashoffset: var(--target);
-        }
+        transition: stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          stroke 0.3s ease;
       }
 
       .ring-center {
@@ -266,6 +249,26 @@
       .ring-center .check {
         width: 30px;
         height: 30px;
+        transform: none;
+      }
+
+      /* app logo above the date control */
+      .app-logo {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 16px;
+      }
+
+      .app-logo .dot {
+        display: inline-block;
+        width: 0.21em;
+        height: 0.21em;
+        border-radius: 50%;
+        background: var(--green-bright);
+        vertical-align: 0.48em;
+        margin: 0 0.07em;
       }
 
       .ring-label {
@@ -356,6 +359,718 @@
         color: var(--muted);
       }
 
+      /* Screen subtitle (Alerts header) */
+      .subtitle {
+        font-size: 15px;
+        color: var(--muted);
+        margin: -12px 0 18px;
+      }
+
+      /* Date group header */
+      .day-head {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 18px 4px 10px;
+      }
+
+      /* Alert list */
+      .alerts {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .alert {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 13px 14px;
+      }
+
+      .alert .a-ico {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+      }
+
+      .alert .a-ico svg {
+        width: 21px;
+        height: 21px;
+      }
+
+      /* severity tints */
+      .sev-high .a-ico {
+        background: rgba(240, 104, 95, 0.14);
+      }
+      .sev-med .a-ico {
+        background: rgba(229, 169, 78, 0.14);
+      }
+      .sev-low .a-ico {
+        background: rgba(63, 161, 90, 0.14);
+      }
+
+      .alert .a-body {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .alert .a-title {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+
+      .alert .a-meta {
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .alert .a-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 7px;
+        flex: 0 0 auto;
+      }
+
+      .alert .a-time {
+        font-size: 11.5px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .sev-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+      }
+      .sev-high .sev-dot {
+        background: #f0685f;
+        box-shadow: 0 0 0 4px rgba(240, 104, 95, 0.16);
+      }
+      .sev-med .sev-dot {
+        background: #e5a94e;
+        box-shadow: 0 0 0 4px rgba(229, 169, 78, 0.16);
+      }
+      .sev-low .sev-dot {
+        background: #4fbf6c;
+        box-shadow: 0 0 0 4px rgba(79, 191, 108, 0.16);
+      }
+
+      /* ===== Activity screen ===== */
+      .card-block {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 18px 16px;
+      }
+
+      .summary {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .sum-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 16px 15px;
+      }
+
+      .sum-card .s-num {
+        font-size: 30px;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .sum-card .s-label {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      .s-delta {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11.5px;
+        font-weight: 700;
+        margin-top: 12px;
+        padding: 3px 9px;
+        border-radius: 999px;
+      }
+      .s-delta.down {
+        color: var(--green-bright);
+        background: rgba(79, 191, 108, 0.12);
+      }
+      .s-delta.up {
+        color: #f0685f;
+        background: rgba(240, 104, 95, 0.12);
+      }
+
+      /* Bar chart */
+      .chart {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 7px;
+        height: 156px;
+      }
+
+      .bar-col {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .bar-track {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 5px;
+      }
+
+      .bar-val {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .bar {
+        width: 22px;
+        border-radius: 6px;
+        background: linear-gradient(180deg, #4fbf6c, #2b7040);
+      }
+
+      .bar-col.today .bar {
+        box-shadow: 0 0 0 2px rgba(79, 191, 108, 0.35);
+      }
+
+      .bar-col.today .bar-val {
+        color: var(--green-bright);
+      }
+
+      .bar-day {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-top: 9px;
+      }
+
+      .bar-col.today .bar-day {
+        color: var(--green-bright);
+      }
+
+      /* Top sources */
+      .sources {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .src-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 8px;
+      }
+
+      .src-name {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .src-count {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      .src-bar {
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        overflow: hidden;
+      }
+
+      .src-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #2b7040, #4fbf6c);
+      }
+
+      /* ===== Settings screen ===== */
+      .lock-card {
+        background: radial-gradient(
+            120% 90% at 0% 0%,
+            rgba(255, 255, 255, 0.12),
+            transparent 55%
+          ),
+          linear-gradient(165deg, #3fa15a, #235d34);
+        border-radius: 22px;
+        padding: 20px;
+        box-shadow: 0 16px 36px rgba(43, 112, 64, 0.32);
+      }
+
+      .lock-top {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .lock-ring {
+        width: 52px;
+        height: 52px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.3);
+      }
+
+      .lock-ring svg {
+        width: 26px;
+        height: 26px;
+      }
+
+      .lock-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #fff;
+      }
+
+      .lock-status {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.85);
+        margin-top: 1px;
+      }
+
+      .lock-text {
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.92);
+        margin-top: 15px;
+      }
+
+      .lock-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 15px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #fff;
+        padding: 8px 13px;
+        border-radius: 999px;
+        font-size: 12.5px;
+        font-weight: 700;
+      }
+
+      .lock-pill svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* Setting list rows */
+      .set-list {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .set-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 15px;
+      }
+
+      .set-row + .set-row {
+        border-top: 1px solid var(--line);
+      }
+
+      .set-ico {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: rgba(63, 161, 90, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+      }
+
+      .set-ico svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .set-main {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .set-name {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .set-sub {
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      /* iOS-style toggle (static) */
+      .toggle {
+        width: 46px;
+        height: 28px;
+        border-radius: 999px;
+        background: #33373d;
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .toggle::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+      }
+
+      .toggle.on {
+        background: var(--green);
+      }
+
+      .toggle.on::after {
+        left: 21px;
+      }
+
+      /* Segmented age control */
+      .segment {
+        display: flex;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 4px;
+        gap: 4px;
+      }
+
+      .seg {
+        flex: 1;
+        text-align: center;
+        padding: 11px 6px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        border: none;
+        background: none;
+        cursor: pointer;
+      }
+
+      .seg.active {
+        background: linear-gradient(160deg, #4aa863, #256437);
+        color: #fff;
+      }
+
+      .seg-cap {
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-top: 11px;
+        text-align: center;
+      }
+
+      /* ===== Home header + child switcher ===== */
+      .home-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .switcher {
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 5px 11px 5px 5px;
+        cursor: pointer;
+        color: var(--ink);
+      }
+
+      .pill-av {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: linear-gradient(160deg, #4aa863, #256437);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .pill-name {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .pill svg {
+        width: 15px;
+        height: 15px;
+        color: var(--muted);
+      }
+
+      .dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        width: 236px;
+        background: #191b1f;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 6px;
+        box-shadow: 0 22px 44px rgba(0, 0, 0, 0.55);
+        z-index: 50;
+        display: none;
+      }
+
+      .dropdown.open {
+        display: block;
+      }
+
+      .drop-row {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 9px 10px;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+
+      .drop-row:hover {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .drop-row.selected {
+        background: rgba(63, 161, 90, 0.12);
+      }
+
+      .drop-av {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: linear-gradient(160deg, #4aa863, #256437);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+      }
+
+      .drop-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .drop-name {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .drop-row.selected .drop-name {
+        color: var(--green-bright);
+      }
+
+      .drop-dev {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .drop-check {
+        display: flex;
+        color: var(--green-bright);
+      }
+
+      .drop-add {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 10px;
+        margin-top: 4px;
+        border-top: 1px solid var(--line);
+        border-radius: 12px;
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .drop-add .add-ic {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1.5px dashed #4a4f57;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+      }
+
+      /* Needs-attention banner */
+      .attention {
+        display: none;
+        align-items: center;
+        gap: 12px;
+        background: rgba(229, 169, 78, 0.12);
+        border: 1px solid rgba(229, 169, 78, 0.4);
+        border-radius: 16px;
+        padding: 13px 14px;
+        margin-bottom: 12px;
+      }
+
+      .attention.show {
+        display: flex;
+      }
+
+      .attn-ic {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background: rgba(229, 169, 78, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+      }
+
+      .attn-ic svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .attn-body {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .attn-title {
+        font-size: 14.5px;
+        font-weight: 700;
+        color: #e5a94e;
+      }
+
+      .attn-sub {
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-top: 1px;
+      }
+
+      .attn-chev {
+        display: flex;
+        color: #e5a94e;
+        flex: 0 0 auto;
+      }
+
+      /* Protection status strip */
+      .prot-strip {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        background: rgba(63, 161, 90, 0.08);
+        border: 1px solid rgba(63, 161, 90, 0.22);
+        border-radius: 12px;
+        padding: 9px 13px;
+      }
+
+      .prot-strip svg {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 auto;
+      }
+
+      .prot-strip .p-text {
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--green-bright);
+        line-height: 1.3;
+      }
+
+      /* Last active line */
+      .last-active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-top: 16px;
+      }
+
+      .last-active .la-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green-bright);
+        box-shadow: 0 0 0 3px rgba(79, 191, 108, 0.18);
+      }
+
+      /* Alerts tab dot */
+      .tab {
+        position: relative;
+      }
+
+      .tab-dot {
+        position: absolute;
+        top: 6px;
+        left: calc(50% + 5px);
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #e5a94e;
+        box-shadow: 0 0 0 3px rgba(12, 13, 15, 0.9);
+        display: none;
+      }
+
+      .tab-dot.show {
+        display: block;
+      }
+
       /* Bottom nav */
       .tabbar {
         flex: 0 0 auto;
@@ -426,26 +1141,66 @@
 
         <!-- Scrollable content -->
         <div class="content">
-          <p class="greeting">Good morning, Sarah</p>
-          <h1 class="title">Home</h1>
-
-          <!-- Child profile -->
-          <div class="profile">
-            <div class="avatar">E</div>
-            <div class="info">
-              <div class="name">Emma</div>
-              <div class="device">iPhone 13 · Age 11</div>
+          <div class="home-head">
+            <div>
+              <p class="greeting">Good morning, Sarah</p>
+              <h1 class="title">Home</h1>
             </div>
-            <span class="switch">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="m9 6 6 6-6 6" stroke="#8b929b" stroke-width="2"
+            <div class="switcher">
+              <button class="pill" onclick="toggleDrop(event)">
+                <span class="pill-av" id="pillAvatar">A</span>
+                <span class="pill-name" id="pillName">Adam</span>
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div class="dropdown" id="dropdown"></div>
+            </div>
+          </div>
+
+          <!-- Needs-attention banner (only when child needs review) -->
+          <div class="attention" id="attention">
+            <div class="attn-ic">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3.5 21 19H3L12 3.5Z" stroke="#e5a94e"
+                  stroke-width="1.7" stroke-linejoin="round" />
+                <path d="M12 10v4" stroke="#e5a94e" stroke-width="1.8"
+                  stroke-linecap="round" />
+                <circle cx="12" cy="16.5" r="1.1" fill="#e5a94e" />
+              </svg>
+            </div>
+            <div class="attn-body">
+              <div class="attn-title">1 alert needs your review</div>
+              <div class="attn-sub" id="attnReason">
+                Repeated explicit searches · TikTok
+              </div>
+            </div>
+            <span class="attn-chev">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </span>
           </div>
 
+          <!-- Protection status strip -->
+          <div class="prot-strip">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="4.5" y="10.5" width="15" height="10" rx="2.5"
+                stroke="#4fbf6c" stroke-width="1.7" />
+              <path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5" stroke="#4fbf6c"
+                stroke-width="1.7" stroke-linecap="round" />
+            </svg>
+            <span class="p-text"
+              >Protection active · can't be disabled by
+              <span id="protName">Adam</span></span
+            >
+          </div>
+
           <!-- WHOOP-style three-ring hero -->
           <div class="hero">
+            <div class="app-logo">sh<span class="dot"></span>eld</div>
             <div class="date-nav">
               <button aria-label="Previous day">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -480,9 +1235,9 @@
                   <svg viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="42" fill="none"
                       stroke="#24272d" stroke-width="8" />
-                    <circle class="prog p1" cx="50" cy="50" r="42" fill="none"
-                      stroke="url(#ringGrad)" stroke-width="8"
-                      stroke-linecap="round"
+                    <circle class="prog" id="ringConnected" cx="50" cy="50"
+                      r="42" fill="none" stroke="url(#ringGrad)"
+                      stroke-width="8" stroke-linecap="round"
                       stroke-dasharray="263.9" />
                   </svg>
                   <div class="ring-center">
@@ -502,12 +1257,14 @@
                   <svg viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="42" fill="none"
                       stroke="#24272d" stroke-width="8" />
-                    <circle class="prog p2" cx="50" cy="50" r="42" fill="none"
-                      stroke="url(#ringGrad)" stroke-width="8"
-                      stroke-linecap="round"
+                    <circle class="prog" id="ringBlurred" cx="50" cy="50"
+                      r="42" fill="none" stroke="url(#ringGrad)"
+                      stroke-width="8" stroke-linecap="round"
                       stroke-dasharray="263.9" />
                   </svg>
-                  <div class="ring-center"><span class="val">27</span></div>
+                  <div class="ring-center">
+                    <span class="val" id="valBlurred">27</span>
+                  </div>
                 </div>
                 <div class="ring-label">Blurred</div>
               </div>
@@ -518,12 +1275,14 @@
                   <svg viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="42" fill="none"
                       stroke="#24272d" stroke-width="8" />
-                    <circle class="prog p3" cx="50" cy="50" r="42" fill="none"
-                      stroke="url(#ringGrad)" stroke-width="8"
-                      stroke-linecap="round"
+                    <circle class="prog" id="ringAttempts" cx="50" cy="50"
+                      r="42" fill="none" stroke="url(#ringGrad)"
+                      stroke-width="8" stroke-linecap="round"
                       stroke-dasharray="263.9" />
                   </svg>
-                  <div class="ring-center"><span class="val">3</span></div>
+                  <div class="ring-center">
+                    <span class="val" id="valAttempts">3</span>
+                  </div>
                 </div>
                 <div class="ring-label">Attempts</div>
               </div>
@@ -531,9 +1290,9 @@
 
             <!-- status blurb -->
             <div class="blurb">
-              <div class="b-title">Fully Protected</div>
-              <div class="b-text">
-                All filters are active on Emma's device. Today sh•eld blurred
+              <div class="b-title" id="blurbTitle">Fully Protected</div>
+              <div class="b-text" id="blurbText">
+                All filters are active on Adam's device. Today sh•eld blurred
                 27 items and blocked 3 attempts to reach explicit content.
               </div>
             </div>
@@ -555,9 +1314,15 @@
               </svg>
             </div>
             <div>
-              <div class="h-title">3 attempts blocked today</div>
-              <div class="h-sub">Last blocked at 2:14 PM · web browser</div>
+              <div class="h-title" id="actTitle">3 attempts blocked today</div>
+              <div class="h-sub" id="actSub">
+                Last blocked 2:14 PM · web browser
+              </div>
             </div>
+          </div>
+
+          <div class="last-active">
+            <span class="la-dot"></span> Last active 4 min ago
           </div>
         </div>
 
@@ -573,6 +1338,7 @@
             Home
           </button>
           <button class="tab">
+            <span class="tab-dot" id="alertsDot"></span>
             <svg viewBox="0 0 24 24" fill="none">
               <path d="M6 9a6 6 0 0 1 12 0c0 4 1 5.5 1.8 6.4H4.2C5 14.5 6 13 6 9Z"
                 stroke="currentColor" stroke-width="1.8"
@@ -604,5 +1370,897 @@
         </nav>
       </div>
     </div>
+
+    <!-- ================= ALERTS SCREEN ================= -->
+    <div class="phone">
+      <div class="screen">
+        <div class="island"></div>
+
+        <!-- Status bar -->
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+              <rect x="0" y="7" width="3" height="5" rx="1" fill="#f3f4f5" />
+              <rect x="5" y="4.5" width="3" height="7.5" rx="1" fill="#f3f4f5" />
+              <rect x="10" y="2" width="3" height="10" rx="1" fill="#f3f4f5" />
+              <rect x="15" y="0" width="3" height="12" rx="1" fill="#f3f4f5" />
+            </svg>
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+              <path d="M8.5 2C11.6 2 14.4 3.2 16.4 5.2" stroke="#f3f4f5"
+                stroke-width="1.6" stroke-linecap="round" />
+              <path d="M3.6 6.3C4.9 5 6.6 4.2 8.5 4.2s3.6.8 4.9 2.1"
+                stroke="#f3f4f5" stroke-width="1.6" stroke-linecap="round" />
+              <circle cx="8.5" cy="9.6" r="1.4" fill="#f3f4f5" />
+            </svg>
+            <svg width="26" height="13" viewBox="0 0 26 13" fill="none">
+              <rect x="0.5" y="0.5" width="22" height="12" rx="3.5"
+                stroke="#f3f4f5" stroke-opacity="0.4" />
+              <rect x="2.5" y="2.5" width="15" height="8" rx="2" fill="#f3f4f5" />
+              <rect x="24" y="4" width="1.6" height="5" rx="0.8"
+                fill="#f3f4f5" fill-opacity="0.4" />
+            </svg>
+          </span>
+        </div>
+
+        <!-- Scrollable content -->
+        <div class="content">
+          <h1 class="title">Alerts</h1>
+          <p class="subtitle" id="alertsSubtitle">Emma's device</p>
+
+          <!-- Today -->
+          <div class="day-head">Today</div>
+          <div class="alerts">
+            <div class="alert sev-high">
+              <div class="a-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="11" cy="11" r="6.5" stroke="#f0685f"
+                    stroke-width="1.8" />
+                  <path d="m16 16 4 4" stroke="#f0685f" stroke-width="1.8"
+                    stroke-linecap="round" />
+                </svg>
+              </div>
+              <div class="a-body">
+                <div class="a-title">Explicit search blocked</div>
+                <div class="a-meta">TikTok</div>
+              </div>
+              <div class="a-right">
+                <span class="sev-dot"></span>
+                <span class="a-time">2:14 PM</span>
+              </div>
+            </div>
+
+            <div class="alert sev-high">
+              <div class="a-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="8.5" stroke="#f0685f"
+                    stroke-width="1.7" />
+                  <path
+                    d="M3.5 12h17M12 3.5c2.5 2.4 2.5 14.6 0 17M12 3.5c-2.5 2.4-2.5 14.6 0 17"
+                    stroke="#f0685f" stroke-width="1.7" />
+                </svg>
+              </div>
+              <div class="a-body">
+                <div class="a-title">Adult site blocked</div>
+                <div class="a-meta">Safari</div>
+              </div>
+              <div class="a-right">
+                <span class="sev-dot"></span>
+                <span class="a-time">1:02 PM</span>
+              </div>
+            </div>
+
+            <div class="alert sev-med">
+              <div class="a-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="3.5" y="4.5" width="17" height="15" rx="2.5"
+                    stroke="#e5a94e" stroke-width="1.7" />
+                  <circle cx="9" cy="10" r="1.6" fill="#e5a94e" />
+                  <path d="m5 17 4.5-4.5 3.5 3.5 3-2.5 3 3" stroke="#e5a94e"
+                    stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="a-body">
+                <div class="a-title">Explicit image blurred</div>
+                <div class="a-meta">Instagram</div>
+              </div>
+              <div class="a-right">
+                <span class="sev-dot"></span>
+                <span class="a-time">11:47 AM</span>
+              </div>
+            </div>
+
+            <div class="alert sev-high">
+              <div class="a-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="11" cy="11" r="6.5" stroke="#f0685f"
+                    stroke-width="1.8" />
+                  <path d="m16 16 4 4" stroke="#f0685f" stroke-width="1.8"
+                    stroke-linecap="round" />
+                </svg>
+              </div>
+              <div class="a-body">
+                <div class="a-title">Explicit search blocked</div>
+                <div class="a-meta">Chrome</div>
+              </div>
+              <div class="a-right">
+                <span class="sev-dot"></span>
+                <span class="a-time">9:15 AM</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Yesterday -->
+          <div class="day-head">Yesterday</div>
+          <div class="alerts">
+            <div class="alert sev-high">
+              <div class="a-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="8.5" stroke="#f0685f"
+                    stroke-width="1.7" />
+                  <path
+                    d="M3.5 12h17M12 3.5c2.5 2.4 2.5 14.6 0 17M12 3.5c-2.5 2.4-2.5 14.6 0 17"
+                    stroke="#f0685f" stroke-width="1.7" />
+                </svg>
+              </div>
+              <div class="a-body">
+                <div class="a-title">Adult site blocked</div>
+                <div class="a-meta">Web browser</div>
+              </div>
+              <div class="a-right">
+                <span class="sev-dot"></span>
+                <span class="a-time">8:58 PM</span>
+              </div>
+            </div>
+
+            <div class="alert sev-med">
+              <div class="a-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="3.5" y="4.5" width="17" height="15" rx="2.5"
+                    stroke="#e5a94e" stroke-width="1.7" />
+                  <circle cx="9" cy="10" r="1.6" fill="#e5a94e" />
+                  <path d="m5 17 4.5-4.5 3.5 3.5 3-2.5 3 3" stroke="#e5a94e"
+                    stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="a-body">
+                <div class="a-title">Explicit image blurred</div>
+                <div class="a-meta">TikTok</div>
+              </div>
+              <div class="a-right">
+                <span class="sev-dot"></span>
+                <span class="a-time">7:32 PM</span>
+              </div>
+            </div>
+
+            <div class="alert sev-low">
+              <div class="a-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 5.5h16v11H8l-4 3.5V5.5Z" stroke="#4fbf6c"
+                    stroke-width="1.7" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="a-body">
+                <div class="a-title">Profanity filtered</div>
+                <div class="a-meta">YouTube</div>
+              </div>
+              <div class="a-right">
+                <span class="sev-dot"></span>
+                <span class="a-time">5:20 PM</span>
+              </div>
+            </div>
+
+            <div class="alert sev-high">
+              <div class="a-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="11" cy="11" r="6.5" stroke="#f0685f"
+                    stroke-width="1.8" />
+                  <path d="m16 16 4 4" stroke="#f0685f" stroke-width="1.8"
+                    stroke-linecap="round" />
+                </svg>
+              </div>
+              <div class="a-body">
+                <div class="a-title">Explicit search blocked</div>
+                <div class="a-meta">Safari</div>
+              </div>
+              <div class="a-right">
+                <span class="sev-dot"></span>
+                <span class="a-time">3:04 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom nav (Alerts active) -->
+        <nav class="tabbar">
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 11 12 4l8 7" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M6 10v9h12v-9" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Home
+          </button>
+          <button class="tab active">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6 9a6 6 0 0 1 12 0c0 4 1 5.5 1.8 6.4H4.2C5 14.5 6 13 6 9Z"
+                stroke="currentColor" stroke-width="1.8"
+                stroke-linejoin="round" />
+              <path d="M10 19a2 2 0 0 0 4 0" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            Alerts
+          </button>
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 15l4-4 3 3 5-6 4 4" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Activity
+          </button>
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="3" stroke="currentColor"
+                stroke-width="1.8" />
+              <path
+                d="M19 12a7 7 0 0 0-.1-1.2l1.9-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2l-.3-2.4H8.8l-.3 2.4a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4L4 10.8a7 7 0 0 0 0 2.4l-1.9 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2l.3 2.4h4.4l.3-2.4a7 7 0 0 0 2-1.2l2.3.9 2-3.4-1.9-1.5c.1-.4.1-.8.1-1.2Z"
+                stroke="currentColor" stroke-width="1.5"
+                stroke-linejoin="round" />
+            </svg>
+            Settings
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <!-- ================= ACTIVITY SCREEN ================= -->
+    <div class="phone">
+      <div class="screen">
+        <div class="island"></div>
+
+        <!-- Status bar -->
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+              <rect x="0" y="7" width="3" height="5" rx="1" fill="#f3f4f5" />
+              <rect x="5" y="4.5" width="3" height="7.5" rx="1" fill="#f3f4f5" />
+              <rect x="10" y="2" width="3" height="10" rx="1" fill="#f3f4f5" />
+              <rect x="15" y="0" width="3" height="12" rx="1" fill="#f3f4f5" />
+            </svg>
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+              <path d="M8.5 2C11.6 2 14.4 3.2 16.4 5.2" stroke="#f3f4f5"
+                stroke-width="1.6" stroke-linecap="round" />
+              <path d="M3.6 6.3C4.9 5 6.6 4.2 8.5 4.2s3.6.8 4.9 2.1"
+                stroke="#f3f4f5" stroke-width="1.6" stroke-linecap="round" />
+              <circle cx="8.5" cy="9.6" r="1.4" fill="#f3f4f5" />
+            </svg>
+            <svg width="26" height="13" viewBox="0 0 26 13" fill="none">
+              <rect x="0.5" y="0.5" width="22" height="12" rx="3.5"
+                stroke="#f3f4f5" stroke-opacity="0.4" />
+              <rect x="2.5" y="2.5" width="15" height="8" rx="2" fill="#f3f4f5" />
+              <rect x="24" y="4" width="1.6" height="5" rx="0.8"
+                fill="#f3f4f5" fill-opacity="0.4" />
+            </svg>
+          </span>
+        </div>
+
+        <!-- Scrollable content -->
+        <div class="content">
+          <h1 class="title">Activity</h1>
+          <p class="subtitle" id="activitySubtitle">Emma's device</p>
+
+          <!-- Weekly summary -->
+          <div class="summary">
+            <div class="sum-card">
+              <div class="s-num">56</div>
+              <div class="s-label">Blocked this week</div>
+              <span class="s-delta down">↓ 12% from last week</span>
+            </div>
+            <div class="sum-card">
+              <div class="s-num">142</div>
+              <div class="s-label">Blurred this week</div>
+              <span class="s-delta down">↓ 8% from last week</span>
+            </div>
+          </div>
+
+          <!-- Bar chart -->
+          <div class="day-head">Blocked per day</div>
+          <div class="card-block">
+            <div class="chart">
+              <div class="bar-col">
+                <div class="bar-track">
+                  <span class="bar-val">6</span>
+                  <div class="bar" style="height: 55%"></div>
+                </div>
+                <div class="bar-day">Mon</div>
+              </div>
+              <div class="bar-col">
+                <div class="bar-track">
+                  <span class="bar-val">9</span>
+                  <div class="bar" style="height: 82%"></div>
+                </div>
+                <div class="bar-day">Tue</div>
+              </div>
+              <div class="bar-col">
+                <div class="bar-track">
+                  <span class="bar-val">5</span>
+                  <div class="bar" style="height: 45%"></div>
+                </div>
+                <div class="bar-day">Wed</div>
+              </div>
+              <div class="bar-col">
+                <div class="bar-track">
+                  <span class="bar-val">11</span>
+                  <div class="bar" style="height: 100%"></div>
+                </div>
+                <div class="bar-day">Thu</div>
+              </div>
+              <div class="bar-col">
+                <div class="bar-track">
+                  <span class="bar-val">7</span>
+                  <div class="bar" style="height: 64%"></div>
+                </div>
+                <div class="bar-day">Fri</div>
+              </div>
+              <div class="bar-col">
+                <div class="bar-track">
+                  <span class="bar-val">8</span>
+                  <div class="bar" style="height: 73%"></div>
+                </div>
+                <div class="bar-day">Sat</div>
+              </div>
+              <div class="bar-col today">
+                <div class="bar-track">
+                  <span class="bar-val">10</span>
+                  <div class="bar" style="height: 91%"></div>
+                </div>
+                <div class="bar-day">Sun</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top sources -->
+          <div class="day-head">Top sources</div>
+          <div class="card-block">
+            <div class="sources">
+              <div class="source-row">
+                <div class="src-top">
+                  <span class="src-name">TikTok</span>
+                  <span class="src-count">21 blocked</span>
+                </div>
+                <div class="src-bar">
+                  <div class="src-fill" style="width: 100%"></div>
+                </div>
+              </div>
+              <div class="source-row">
+                <div class="src-top">
+                  <span class="src-name">Instagram</span>
+                  <span class="src-count">14 blocked</span>
+                </div>
+                <div class="src-bar">
+                  <div class="src-fill" style="width: 67%"></div>
+                </div>
+              </div>
+              <div class="source-row">
+                <div class="src-top">
+                  <span class="src-name">Safari</span>
+                  <span class="src-count">11 blocked</span>
+                </div>
+                <div class="src-bar">
+                  <div class="src-fill" style="width: 52%"></div>
+                </div>
+              </div>
+              <div class="source-row">
+                <div class="src-top">
+                  <span class="src-name">YouTube</span>
+                  <span class="src-count">6 blocked</span>
+                </div>
+                <div class="src-bar">
+                  <div class="src-fill" style="width: 29%"></div>
+                </div>
+              </div>
+              <div class="source-row">
+                <div class="src-top">
+                  <span class="src-name">Snapchat</span>
+                  <span class="src-count">4 blocked</span>
+                </div>
+                <div class="src-bar">
+                  <div class="src-fill" style="width: 19%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom nav (Activity active) -->
+        <nav class="tabbar">
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 11 12 4l8 7" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M6 10v9h12v-9" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Home
+          </button>
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6 9a6 6 0 0 1 12 0c0 4 1 5.5 1.8 6.4H4.2C5 14.5 6 13 6 9Z"
+                stroke="currentColor" stroke-width="1.8"
+                stroke-linejoin="round" />
+              <path d="M10 19a2 2 0 0 0 4 0" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            Alerts
+          </button>
+          <button class="tab active">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 15l4-4 3 3 5-6 4 4" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Activity
+          </button>
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="3" stroke="currentColor"
+                stroke-width="1.8" />
+              <path
+                d="M19 12a7 7 0 0 0-.1-1.2l1.9-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2l-.3-2.4H8.8l-.3 2.4a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4L4 10.8a7 7 0 0 0 0 2.4l-1.9 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2l.3 2.4h4.4l.3-2.4a7 7 0 0 0 2-1.2l2.3.9 2-3.4-1.9-1.5c.1-.4.1-.8.1-1.2Z"
+                stroke="currentColor" stroke-width="1.5"
+                stroke-linejoin="round" />
+            </svg>
+            Settings
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <!-- ================= SETTINGS SCREEN ================= -->
+    <div class="phone">
+      <div class="screen">
+        <div class="island"></div>
+
+        <!-- Status bar -->
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+              <rect x="0" y="7" width="3" height="5" rx="1" fill="#f3f4f5" />
+              <rect x="5" y="4.5" width="3" height="7.5" rx="1" fill="#f3f4f5" />
+              <rect x="10" y="2" width="3" height="10" rx="1" fill="#f3f4f5" />
+              <rect x="15" y="0" width="3" height="12" rx="1" fill="#f3f4f5" />
+            </svg>
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+              <path d="M8.5 2C11.6 2 14.4 3.2 16.4 5.2" stroke="#f3f4f5"
+                stroke-width="1.6" stroke-linecap="round" />
+              <path d="M3.6 6.3C4.9 5 6.6 4.2 8.5 4.2s3.6.8 4.9 2.1"
+                stroke="#f3f4f5" stroke-width="1.6" stroke-linecap="round" />
+              <circle cx="8.5" cy="9.6" r="1.4" fill="#f3f4f5" />
+            </svg>
+            <svg width="26" height="13" viewBox="0 0 26 13" fill="none">
+              <rect x="0.5" y="0.5" width="22" height="12" rx="3.5"
+                stroke="#f3f4f5" stroke-opacity="0.4" />
+              <rect x="2.5" y="2.5" width="15" height="8" rx="2" fill="#f3f4f5" />
+              <rect x="24" y="4" width="1.6" height="5" rx="0.8"
+                fill="#f3f4f5" fill-opacity="0.4" />
+            </svg>
+          </span>
+        </div>
+
+        <!-- Scrollable content -->
+        <div class="content">
+          <h1 class="title">Settings</h1>
+          <p class="subtitle" id="settingsSubtitle">Emma's device</p>
+
+          <!-- (1) Protection status -->
+          <div class="lock-card">
+            <div class="lock-top">
+              <div class="lock-ring">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="4.5" y="10.5" width="15" height="10" rx="2.5"
+                    fill="#fff" fill-opacity="0.16" stroke="#fff"
+                    stroke-width="1.6" />
+                  <path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5" stroke="#fff"
+                    stroke-width="1.6" stroke-linecap="round" />
+                  <circle cx="12" cy="15.5" r="1.6" fill="#fff" />
+                </svg>
+              </div>
+              <div>
+                <div class="lock-title">Protection Active</div>
+                <div class="lock-status">Locked &amp; tamper-proof</div>
+              </div>
+            </div>
+            <div class="lock-text" id="settingsLockText">
+              sh•eld cannot be turned off, deleted, or bypassed by Emma. Only
+              you, as the parent, can change these settings with your PIN.
+            </div>
+            <span class="lock-pill">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="4.5" y="10.5" width="15" height="10" rx="2.5"
+                  stroke="#fff" stroke-width="1.8" />
+                <path d="M7.5 10.5V8a4.5 4.5 0 0 1 9 0v2.5" stroke="#fff"
+                  stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+              Child cannot disable
+            </span>
+          </div>
+
+          <!-- (2) Blocked categories -->
+          <div class="day-head">Blocked categories</div>
+          <div class="set-list">
+            <div class="set-row">
+              <div class="set-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"
+                    stroke="#4fbf6c" stroke-width="1.6" stroke-linejoin="round" />
+                  <circle cx="12" cy="12" r="2.6" stroke="#4fbf6c"
+                    stroke-width="1.6" />
+                  <path d="m4 4 16 16" stroke="#4fbf6c" stroke-width="1.6"
+                    stroke-linecap="round" />
+                </svg>
+              </div>
+              <div class="set-main">
+                <div class="set-name">Explicit content</div>
+                <div class="set-sub">Pornography &amp; nudity</div>
+              </div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="set-row">
+              <div class="set-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="8.5" stroke="#4fbf6c"
+                    stroke-width="1.6" />
+                  <path
+                    d="M3.5 12h17M12 3.5c2.5 2.4 2.5 14.6 0 17M12 3.5c-2.5 2.4-2.5 14.6 0 17"
+                    stroke="#4fbf6c" stroke-width="1.6" />
+                </svg>
+              </div>
+              <div class="set-main">
+                <div class="set-name">Adult sites</div>
+                <div class="set-sub">Known adult domains</div>
+              </div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="set-row">
+              <div class="set-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 5.5h16v11H8l-4 3.5V5.5Z" stroke="#4fbf6c"
+                    stroke-width="1.6" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="set-main">
+                <div class="set-name">Profanity</div>
+                <div class="set-sub">Strong language</div>
+              </div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="set-row">
+              <div class="set-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3.5 21 19H3L12 3.5Z" stroke="#4fbf6c"
+                    stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M12 10v4" stroke="#4fbf6c" stroke-width="1.7"
+                    stroke-linecap="round" />
+                  <circle cx="12" cy="16.5" r="1" fill="#4fbf6c" />
+                </svg>
+              </div>
+              <div class="set-main">
+                <div class="set-name">Violence &amp; gore</div>
+                <div class="set-sub">Graphic imagery</div>
+              </div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="set-row">
+              <div class="set-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="4" width="16" height="16" rx="3"
+                    stroke="#4fbf6c" stroke-width="1.6" />
+                  <circle cx="9" cy="9" r="1.3" fill="#4fbf6c" />
+                  <circle cx="15" cy="15" r="1.3" fill="#4fbf6c" />
+                  <circle cx="15" cy="9" r="1.3" fill="#4fbf6c" />
+                  <circle cx="9" cy="15" r="1.3" fill="#4fbf6c" />
+                  <circle cx="12" cy="12" r="1.3" fill="#4fbf6c" />
+                </svg>
+              </div>
+              <div class="set-main">
+                <div class="set-name">Gambling</div>
+                <div class="set-sub">Betting &amp; casino sites</div>
+              </div>
+              <div class="toggle"></div>
+            </div>
+          </div>
+
+          <!-- (3) Age-based trust level -->
+          <div class="day-head">Age-based trust level</div>
+          <div class="segment">
+            <button class="seg">Young child</button>
+            <button class="seg active">Pre-teen</button>
+            <button class="seg">Teen</button>
+          </div>
+          <div class="seg-cap" id="settingsAgeText">
+            Currently: Pre-teen (Age 11) · Filtering strictness eases as Emma
+            gets older.
+          </div>
+
+          <!-- (4) Alerts -->
+          <div class="day-head">Alerts</div>
+          <div class="set-list">
+            <div class="set-row">
+              <div class="set-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M6 9a6 6 0 0 1 12 0c0 4 1 5.5 1.8 6.4H4.2C5 14.5 6 13 6 9Z"
+                    stroke="#4fbf6c" stroke-width="1.6" stroke-linejoin="round" />
+                  <path d="M10 19a2 2 0 0 0 4 0" stroke="#4fbf6c"
+                    stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              </div>
+              <div class="set-main">
+                <div class="set-name">Instant alerts</div>
+                <div class="set-sub">Push me when content is blocked</div>
+              </div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="set-row">
+              <div class="set-ico">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="3.5" y="5.5" width="17" height="13" rx="2.5"
+                    stroke="#4fbf6c" stroke-width="1.6" />
+                  <path d="m4.5 7 7.5 5.5L19.5 7" stroke="#4fbf6c"
+                    stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="set-main">
+                <div class="set-name">Weekly digest email</div>
+                <div class="set-sub">Summary every Sunday</div>
+              </div>
+              <div class="toggle on"></div>
+            </div>
+          </div>
+
+          <!-- (5) Child profile -->
+          <div class="day-head">Child</div>
+          <div class="profile" style="margin-top: 0">
+            <div class="avatar" id="settingsChildAvatar">E</div>
+            <div class="info">
+              <div class="name" id="settingsChildName">Emma</div>
+              <div class="device" id="settingsChildDevice">iPhone 13 · Age 11</div>
+            </div>
+            <span class="switch">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="m9 6 6 6-6 6" stroke="#8b929b" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Bottom nav (Settings active) -->
+        <nav class="tabbar">
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 11 12 4l8 7" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M6 10v9h12v-9" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Home
+          </button>
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6 9a6 6 0 0 1 12 0c0 4 1 5.5 1.8 6.4H4.2C5 14.5 6 13 6 9Z"
+                stroke="currentColor" stroke-width="1.8"
+                stroke-linejoin="round" />
+              <path d="M10 19a2 2 0 0 0 4 0" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            Alerts
+          </button>
+          <button class="tab">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 15l4-4 3 3 5-6 4 4" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Activity
+          </button>
+          <button class="tab active">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="3" stroke="currentColor"
+                stroke-width="1.8" />
+              <path
+                d="M19 12a7 7 0 0 0-.1-1.2l1.9-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2l-.3-2.4H8.8l-.3 2.4a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4L4 10.8a7 7 0 0 0 0 2.4l-1.9 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2l.3 2.4h4.4l.3-2.4a7 7 0 0 0 2-1.2l2.3.9 2-3.4-1.9-1.5c.1-.4.1-.8.1-1.2Z"
+                stroke="currentColor" stroke-width="1.5"
+                stroke-linejoin="round" />
+            </svg>
+            Settings
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <script>
+      // ===== Home screen: children data + switching (prototype) =====
+      const kids = [
+        {
+          name: "Adam",
+          initial: "A",
+          device: "iPhone 13 · Age 11",
+          blurred: 27,
+          attempts: 3,
+          review: false,
+          actTitle: "3 attempts blocked today",
+          actSub: "Last blocked 2:14 PM · web browser",
+        },
+        {
+          name: "Ali",
+          initial: "A",
+          device: "iPad · Age 9",
+          blurred: 12,
+          attempts: 1,
+          review: false,
+          actTitle: "1 attempt blocked today",
+          actSub: "Last blocked 11:05 AM · YouTube",
+        },
+        {
+          name: "Maryam",
+          initial: "M",
+          device: "iPhone 12 · Age 14",
+          blurred: 41,
+          attempts: 7,
+          review: true,
+          actTitle: "7 attempts blocked today",
+          actSub: "Last blocked 4:47 PM · TikTok",
+          reason: "Repeated explicit searches · TikTok",
+        },
+      ];
+
+      const CIRC = 263.9;
+      const AMBER = "#e5a94e";
+      let current = 0;
+
+      const $ = (id) => document.getElementById(id);
+
+      function offset(value, max) {
+        return CIRC * (1 - Math.min(value / max, 1));
+      }
+
+      function renderDropdown() {
+        const rows = kids
+          .map(
+            (k, i) => `
+          <div class="drop-row ${i === current ? "selected" : ""}"
+               onclick="selectKid(${i})">
+            <span class="drop-av">${k.initial}</span>
+            <div class="drop-info">
+              <div class="drop-name">${k.name}</div>
+              <div class="drop-dev">${k.device}</div>
+            </div>
+            ${
+              i === current
+                ? `<span class="drop-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4 4 10-10.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`
+                : ""
+            }
+          </div>`
+          )
+          .join("");
+
+        const add = `
+          <div class="drop-add" onclick="addChild(event)">
+            <span class="add-ic">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 6v12M6 12h12" stroke="#8b929b" stroke-width="2"
+                  stroke-linecap="round"/>
+              </svg>
+            </span>
+            Add a child
+          </div>`;
+
+        $("dropdown").innerHTML = rows + add;
+      }
+
+      function render(i) {
+        current = i;
+        const k = kids[i];
+
+        // switcher pill
+        $("pillAvatar").textContent = k.initial;
+        $("pillName").textContent = k.name;
+
+        // rings
+        $("ringConnected").style.strokeDashoffset = 0;
+        $("ringBlurred").style.strokeDashoffset = offset(k.blurred, 50);
+        $("ringAttempts").style.strokeDashoffset = offset(k.attempts, 10);
+        $("valBlurred").textContent = k.blurred;
+        $("valAttempts").textContent = k.attempts;
+
+        // amber attempts ring when review is needed
+        $("ringAttempts").setAttribute(
+          "stroke",
+          k.review ? AMBER : "url(#ringGrad)"
+        );
+        $("valAttempts").style.color = k.review ? AMBER : "";
+
+        // status blurb
+        if (k.review) {
+          $("blurbTitle").textContent = "Needs review";
+          $("blurbTitle").style.color = AMBER;
+          $("blurbText").textContent =
+            `sh•eld blocked ${k.attempts} attempts and blurred ${k.blurred} ` +
+            `items on ${k.name}'s device today. Some activity may need your attention.`;
+        } else {
+          $("blurbTitle").textContent = "Fully Protected";
+          $("blurbTitle").style.color = "";
+          $("blurbText").textContent =
+            `All filters are active on ${k.name}'s device. Today sh•eld ` +
+            `blurred ${k.blurred} items and blocked ${k.attempts} attempts ` +
+            `to reach explicit content.`;
+        }
+
+        // protection strip
+        $("protName").textContent = k.name;
+
+        // shared child identity across screens
+        $("alertsSubtitle").textContent = `${k.name}'s device`;
+        $("activitySubtitle").textContent = `${k.name}'s device`;
+        $("settingsSubtitle").textContent = `${k.name}'s device`;
+        $("settingsLockText").textContent =
+          `sh•eld cannot be turned off, deleted, or bypassed by ${k.name}. Only you, as the parent, can change these settings with your PIN.`;
+        $("settingsAgeText").textContent =
+          `Currently: Pre-teen (Age 11) · Filtering strictness eases as ${k.name} gets older.`;
+        $("settingsChildAvatar").textContent = k.initial;
+        $("settingsChildName").textContent = k.name;
+        $("settingsChildDevice").textContent = k.device;
+
+        // today's activity
+        $("actTitle").textContent = k.actTitle;
+        $("actSub").textContent = k.actSub;
+
+        // needs-attention banner + alerts tab dot
+        if (k.review) {
+          $("attention").classList.add("show");
+          $("attnReason").textContent = k.reason;
+          $("alertsDot").classList.add("show");
+        } else {
+          $("attention").classList.remove("show");
+          $("alertsDot").classList.remove("show");
+        }
+
+        renderDropdown();
+      }
+
+      function toggleDrop(e) {
+        e.stopPropagation();
+        $("dropdown").classList.toggle("open");
+      }
+
+      function selectKid(i) {
+        render(i);
+        $("dropdown").classList.remove("open");
+      }
+
+      function addChild(e) {
+        e.stopPropagation();
+        $("dropdown").classList.remove("open");
+        // Prototype only — no add flow yet.
+      }
+
+      // close dropdown when clicking outside the switcher
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".switcher")) {
+          $("dropdown").classList.remove("open");
+        }
+      });
+
+      // default to Adam; delay so the ring transitions animate on load
+      renderDropdown();
+      requestAnimationFrame(() => render(0));
+    </script>
   </body>
 </html>

@@ -121,7 +121,46 @@
         font-size: 19px;
         color: var(--muted);
         max-width: 640px;
-        margin: 0 auto 34px;
+        margin: 0 auto 16px;
+      }
+
+      .hero-note {
+        display: inline-block;
+        max-width: 700px;
+        margin: 0 auto 24px;
+        padding: 8px 14px;
+        border: 1px solid rgba(63, 161, 90, 0.28);
+        border-radius: 999px;
+        background: rgba(63, 161, 90, 0.1);
+        color: var(--green-bright);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 34px;
+      }
+
+      .secondary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        border: 1px solid rgba(63, 161, 90, 0.38);
+        border-radius: 999px;
+        color: var(--green-bright);
+        background: rgba(63, 161, 90, 0.08);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 700;
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+
+      .secondary-btn:hover {
+        background: rgba(63, 161, 90, 0.16);
+        border-color: rgba(63, 161, 90, 0.6);
       }
 
       /* Feature cards */
@@ -257,6 +296,14 @@
         color: #6b727b;
       }
 
+      .trust-line {
+        position: relative;
+        margin: 16px auto 0;
+        font-size: 14px;
+        font-style: italic;
+        color: #8d95a0;
+      }
+
       .success {
         display: none;
         position: relative;
@@ -334,13 +381,20 @@
       <section class="hero">
         <span class="badge">Coming soon · Join the waitlist</span>
         <h1>
-          Keep explicit content <span class="hl">off</span> your child's device.
+          Help keep explicit content <span class="hl">off</span> your child's device.
         </h1>
         <p class="lead">
-          sh•eld blocks adult and harmful content before it reaches the screen —
-          and alerts you the moment your child tries to access it. Built to stay
-          on, so it can't be easily switched off or removed.
+          sh•eld helps block adult and harmful websites and searches on your
+          child's device, and is designed to be hard for them to switch off or
+          remove. We're building toward protection that goes even further.
         </p>
+        <div class="hero-note">
+          Unlike most filters, sh•eld is built to resist VPN bypass — the trick
+          most kids use to get around blocks.
+        </div>
+        <div class="hero-actions">
+          <a class="secondary-btn" href="dashboard.html">Preview the app</a>
+        </div>
       </section>
 
       <section class="features">
@@ -359,8 +413,8 @@
           </div>
           <h3>Blocks explicit content</h3>
           <p>
-            Filters and stops adult and harmful material automatically, before it
-            ever loads on your child's device.
+            Helps filter and block adult and harmful websites and searches
+            automatically.
           </p>
         </div>
         <div class="card">
@@ -375,8 +429,7 @@
           </div>
           <h3>Alerts you instantly</h3>
           <p>
-            Get a real-time notification whenever access to blocked content is
-            attempted — so nothing slips by unnoticed.
+            Designed to notify you when access to blocked content is attempted.
           </p>
         </div>
         <div class="card">
@@ -390,10 +443,11 @@
                 stroke="#4fbf6c" stroke-width="1.5" />
             </svg>
           </div>
-          <h3>Can't be turned off</h3>
+          <h3>Built to stay on</h3>
           <p>
-            Tamper-resistant by design. Your child can't simply disable,
-            uninstall, or work around the protection.
+            Designed to be tamper-resistant, so it's hard for your child to
+            simply disable or remove. Unlike many filters, sh•eld is designed
+            so it can't be bypassed with a VPN.
           </p>
         </div>
       </section>
@@ -404,7 +458,11 @@
           Join the waitlist and we'll email you the moment sh•eld is ready for
           your family's devices.
         </p>
-        <form id="waitlist-form">
+        <form
+          id="waitlist-form"
+          action="https://formspree.io/f/mrewypvq"
+          method="POST"
+        >
           <input
             type="email"
             id="email"
