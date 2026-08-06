@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="sh•eld shield logo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4fbf6c"/>
+      <stop offset="100%" stop-color="#256437"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0c0d0f"/>
+  <path d="M32 8 14 15v12c0 9.3 5.7 15.8 18 20 12.3-4.2 18-10.7 18-20V15L32 8Z" fill="url(#g)" fill-opacity="0.2" stroke="#ffffff" stroke-opacity="0.65" stroke-width="1.8"/>
+  <path d="m22 31.5 6.8 6.8 12.2-12.8" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
