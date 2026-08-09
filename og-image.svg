@@ -1,13 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-label="sh•eld logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="sh•eld logo">
   <defs>
     <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#4fbf6c"/>
       <stop offset="100%" stop-color="#256437"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="1200" rx="240" fill="#0c0d0f"/>
-  <g transform="translate(0,0) scale(16.6667)">
-    <path d="M32 4 14 10v16c0 12.3 7.6 20.9 42 25 34.4-4.1 42-12.7 42-25V10L32 4Z" fill="url(#g2)" fill-opacity="0.18" stroke="#ffffff" stroke-opacity="0.65" stroke-width="1.8"/>
+  <rect width="1200" height="630" fill="#3fa15a"/>
+  <rect x="160" y="195" width="240" height="240" rx="60" fill="#0c0d0f"/>
+  <g transform="translate(160 195) scale(3.75)">
+    <path d="M32 8 14 15v12c0 9.3 5.7 15.8 18 20 12.3-4.2 18-10.7 18-20V15L32 8Z" fill="url(#g2)" fill-opacity="0.2" stroke="#ffffff" stroke-opacity="0.65" stroke-width="1.8"/>
     <path d="m22 31.5 6.8 6.8 12.2-12.8" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
+  <text x="460" y="320" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="180" font-weight="800" letter-spacing="-6" dominant-baseline="middle">sh•eld</text>
 </svg>

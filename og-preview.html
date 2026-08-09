@@ -8,11 +8,58 @@
   .canvas {
     width: 1200px;
     height: 630px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #3fa15a;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+  }
+  .mark {
+    width: 220px;
+    height: 220px;
+    border-radius: 44px;
+    background: linear-gradient(160deg, #4fbf6c, #256437);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mark svg {
+    width: 140px;
+    height: 140px;
+  }
+  .title {
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 124px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    margin: 0;
+    text-transform: lowercase;
   }
 </style>
 </head>
 <body>
-<div class="canvas"></div>
+<div class="canvas">
+  <div class="brand">
+    <div class="mark">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="sh•eld logo">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4fbf6c" />
+            <stop offset="100%" stop-color="#256437" />
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="16" fill="#0c0d0f" />
+        <path d="M32 8 14 15v12c0 9.3 5.7 15.8 18 20 12.3-4.2 18-10.7 18-20V15L32 8Z" fill="url(#g)" fill-opacity="0.2" stroke="#ffffff" stroke-opacity="0.65" stroke-width="1.8" />
+        <path d="m22 31.5 6.8 6.8 12.2-12.8" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+    <h1 class="title">sh•eld</h1>
+  </div>
+</div>
 </body>
 </html>
