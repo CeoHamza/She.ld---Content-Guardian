@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+     role="img" aria-label="sh-eld shield logo">
+  <defs>
+    <linearGradient id="tg-b" x1="0.281" y1="-0.103" x2="0.719" y2="1.103">
+      <stop offset="0" stop-color="#4aa863"/><stop offset="1" stop-color="#256437"/>
+    </linearGradient>
+    <linearGradient id="sg-b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a7346"/><stop offset="1" stop-color="#17502c"/>
+    </linearGradient>
+    <pattern id="pat-b" patternUnits="userSpaceOnUse"
+        x="24.00" y="18.00" width="58.00" height="58.00">
+      <g fill="none" stroke="#dcb978" stroke-width="2.3" stroke-linejoin="miter">
+        <polygon points="29.00,0.00 20.51,8.49 20.51,20.51 8.49,20.51 0.00,29.00 -8.49,20.51 -20.51,20.51 -20.51,8.49 -29.00,0.00 -20.51,-8.49 -20.51,-20.51 -8.49,-20.51 -0.00,-29.00 8.49,-20.51 20.51,-20.51 20.51,-8.49"/>
+        <polygon points="10.66,4.42 4.42,10.66 -4.42,10.66 -10.66,4.42 -10.66,-4.42 -4.42,-10.66 4.42,-10.66 10.66,-4.42"/>
+        <polygon points="87.00,0.00 78.51,8.49 78.51,20.51 66.49,20.51 58.00,29.00 49.51,20.51 37.49,20.51 37.49,8.49 29.00,0.00 37.49,-8.49 37.49,-20.51 49.51,-20.51 58.00,-29.00 66.49,-20.51 78.51,-20.51 78.51,-8.49"/>
+        <polygon points="68.66,4.42 62.42,10.66 53.58,10.66 47.34,4.42 47.34,-4.42 53.58,-10.66 62.42,-10.66 68.66,-4.42"/>
+        <polygon points="29.00,58.00 20.51,66.49 20.51,78.51 8.49,78.51 0.00,87.00 -8.49,78.51 -20.51,78.51 -20.51,66.49 -29.00,58.00 -20.51,49.51 -20.51,37.49 -8.49,37.49 -0.00,29.00 8.49,37.49 20.51,37.49 20.51,49.51"/>
+        <polygon points="10.66,62.42 4.42,68.66 -4.42,68.66 -10.66,62.42 -10.66,53.58 -4.42,47.34 4.42,47.34 10.66,53.58"/>
+        <polygon points="87.00,58.00 78.51,66.49 78.51,78.51 66.49,78.51 58.00,87.00 49.51,78.51 37.49,78.51 37.49,66.49 29.00,58.00 37.49,49.51 37.49,37.49 49.51,37.49 58.00,29.00 66.49,37.49 78.51,37.49 78.51,49.51"/>
+        <polygon points="68.66,62.42 62.42,68.66 53.58,68.66 47.34,62.42 47.34,53.58 53.58,47.34 62.42,47.34 68.66,53.58"/>
+        <polygon points="34.54,34.54 23.46,34.54 23.46,23.46 34.54,23.46"/>
+        <line x1="34.54" y1="34.54" x2="33.81" y2="33.81"/>
+        <line x1="23.46" y1="34.54" x2="24.19" y2="33.81"/>
+        <line x1="23.46" y1="23.46" x2="24.19" y2="24.19"/>
+        <line x1="34.54" y1="23.46" x2="33.81" y2="24.19"/>
+      </g>
+    </pattern>
+    <clipPath id="clip-b">
+      <path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z" transform="translate(111.30 111.30) scale(12.0580)"/>
+    </clipPath>
+    <!-- knock a clean gap in the pattern around the check, so no gold line
+         runs under it; far cleaner than a dark halo behind the stroke -->
+    <mask id="knock-b">
+      <rect width="512.0" height="512.0" fill="#fff"/>
+      <path d="M8.2 12.1 10.8 14.7 15.8 9.5" transform="translate(111.30 111.30) scale(12.0580)"
+            fill="none" stroke="#000" stroke-width="3.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <rect width="512.0" height="512.0" rx="144.7" fill="url(#tg-b)"/>
+  <g transform="translate(111.30 111.30) scale(12.0580)">
+    <path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z" fill="url(#sg-b)"/>
+  </g>
+  <g clip-path="url(#clip-b)" mask="url(#knock-b)" opacity="0.7">
+    <rect width="512.0" height="512.0" fill="url(#pat-b)"/>
+  </g>
+  <g transform="translate(111.30 111.30) scale(12.0580)" fill="none">
+    <path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1.1"/>
+    <path d="M8.2 12.1 10.8 14.7 15.8 9.5" stroke="#ffffff" stroke-width="2.1"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
