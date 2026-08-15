@@ -73,17 +73,17 @@
         width: 46px;
         height: 46px;
         border-radius: 13px;
-        background: linear-gradient(160deg, #4aa863, #256437);
+        /* the SVG paints the tile and its gradient itself now */
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 6px 16px rgba(43, 112, 64, 0.45),
-          inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        box-shadow: 0 6px 16px rgba(43, 112, 64, 0.45);
       }
 
       .logo .mark svg {
-        width: 26px;
-        height: 26px;
+        width: 100%;
+        height: 100%;
+        display: block;
       }
 
       .logo .wordmark {
@@ -426,45 +426,43 @@
       <header>
         <div class="logo">
           <span class="mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="gs-m" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#2a7346"/>
-                  <stop offset="1" stop-color="#17502c"/>
-                </linearGradient>
-                <pattern id="gp-m" patternUnits="userSpaceOnUse"
-                    x="0.0000" y="0.0000" width="4.8101" height="4.8101">
-                  <g fill="none" stroke="#dcb978" stroke-width="0.1907" stroke-linejoin="miter">
-                    <polygon points="2.41,0.00 1.70,0.70 1.70,1.70 0.70,1.70 0.00,2.41 -0.70,1.70 -1.70,1.70 -1.70,0.70 -2.41,0.00 -1.70,-0.70 -1.70,-1.70 -0.70,-1.70 -0.00,-2.41 0.70,-1.70 1.70,-1.70 1.70,-0.70"/>
-                    <polygon points="0.88,0.37 0.37,0.88 -0.37,0.88 -0.88,0.37 -0.88,-0.37 -0.37,-0.88 0.37,-0.88 0.88,-0.37"/>
-                    <polygon points="7.22,0.00 6.51,0.70 6.51,1.70 5.51,1.70 4.81,2.41 4.11,1.70 3.11,1.70 3.11,0.70 2.41,0.00 3.11,-0.70 3.11,-1.70 4.11,-1.70 4.81,-2.41 5.51,-1.70 6.51,-1.70 6.51,-0.70"/>
-                    <polygon points="5.69,0.37 5.18,0.88 4.44,0.88 3.93,0.37 3.93,-0.37 4.44,-0.88 5.18,-0.88 5.69,-0.37"/>
-                    <polygon points="2.41,4.81 1.70,5.51 1.70,6.51 0.70,6.51 0.00,7.22 -0.70,6.51 -1.70,6.51 -1.70,5.51 -2.41,4.81 -1.70,4.11 -1.70,3.11 -0.70,3.11 -0.00,2.41 0.70,3.11 1.70,3.11 1.70,4.11"/>
-                    <polygon points="0.88,5.18 0.37,5.69 -0.37,5.69 -0.88,5.18 -0.88,4.44 -0.37,3.93 0.37,3.93 0.88,4.44"/>
-                    <polygon points="7.22,4.81 6.51,5.51 6.51,6.51 5.51,6.51 4.81,7.22 4.11,6.51 3.11,6.51 3.11,5.51 2.41,4.81 3.11,4.11 3.11,3.11 4.11,3.11 4.81,2.41 5.51,3.11 6.51,3.11 6.51,4.11"/>
-                    <polygon points="5.69,5.18 5.18,5.69 4.44,5.69 3.93,5.18 3.93,4.44 4.44,3.93 5.18,3.93 5.69,4.44"/>
-                    <polygon points="2.86,2.86 1.95,2.86 1.95,1.95 2.86,1.95"/>
-                    <line x1="2.86" y1="2.86" x2="2.80" y2="2.80"/>
-                    <line x1="1.95" y1="2.86" x2="2.01" y2="2.80"/>
-                    <line x1="1.95" y1="1.95" x2="2.01" y2="2.01"/>
-                    <line x1="2.86" y1="1.95" x2="2.80" y2="2.01"/>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="sh-eld logo"><defs><linearGradient id="bm-tg" x1="0.281" y1="-0.103" x2="0.719" y2="1.103">
+                <stop offset="0" stop-color="#4aa863"/><stop offset="1" stop-color="#256437"/>
+              </linearGradient>
+              <linearGradient id="bm-sg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#2a7346"/><stop offset="1" stop-color="#17502c"/>
+              </linearGradient><pattern id="bm-pat" patternUnits="userSpaceOnUse"
+                    x="0.0000" y="0.0000" width="34.0000" height="34.0000">
+                  <g fill="none" stroke="#dcb978" stroke-width="1.7000" stroke-linejoin="miter">
+                    <polygon points="17.00,0.00 12.02,4.98 12.02,12.02 4.98,12.02 0.00,17.00 -4.98,12.02 -12.02,12.02 -12.02,4.98 -17.00,0.00 -12.02,-4.98 -12.02,-12.02 -4.98,-12.02 -0.00,-17.00 4.98,-12.02 12.02,-12.02 12.02,-4.98"/>
+                    <polygon points="6.25,2.59 2.59,6.25 -2.59,6.25 -6.25,2.59 -6.25,-2.59 -2.59,-6.25 2.59,-6.25 6.25,-2.59"/>
+                    <polygon points="51.00,0.00 46.02,4.98 46.02,12.02 38.98,12.02 34.00,17.00 29.02,12.02 21.98,12.02 21.98,4.98 17.00,0.00 21.98,-4.98 21.98,-12.02 29.02,-12.02 34.00,-17.00 38.98,-12.02 46.02,-12.02 46.02,-4.98"/>
+                    <polygon points="40.25,2.59 36.59,6.25 31.41,6.25 27.75,2.59 27.75,-2.59 31.41,-6.25 36.59,-6.25 40.25,-2.59"/>
+                    <polygon points="17.00,34.00 12.02,38.98 12.02,46.02 4.98,46.02 0.00,51.00 -4.98,46.02 -12.02,46.02 -12.02,38.98 -17.00,34.00 -12.02,29.02 -12.02,21.98 -4.98,21.98 -0.00,17.00 4.98,21.98 12.02,21.98 12.02,29.02"/>
+                    <polygon points="6.25,36.59 2.59,40.25 -2.59,40.25 -6.25,36.59 -6.25,31.41 -2.59,27.75 2.59,27.75 6.25,31.41"/>
+                    <polygon points="51.00,34.00 46.02,38.98 46.02,46.02 38.98,46.02 34.00,51.00 29.02,46.02 21.98,46.02 21.98,38.98 17.00,34.00 21.98,29.02 21.98,21.98 29.02,21.98 34.00,17.00 38.98,21.98 46.02,21.98 46.02,29.02"/>
+                    <polygon points="40.25,36.59 36.59,40.25 31.41,40.25 27.75,36.59 27.75,31.41 31.41,27.75 36.59,27.75 40.25,31.41"/>
+                    <polygon points="20.25,20.25 13.75,20.25 13.75,13.75 20.25,13.75"/>
+                    <line x1="20.25" y1="20.25" x2="19.82" y2="19.82"/>
+                    <line x1="13.75" y1="20.25" x2="14.18" y2="19.82"/>
+                    <line x1="13.75" y1="13.75" x2="14.18" y2="14.18"/>
+                    <line x1="20.25" y1="13.75" x2="19.82" y2="14.18"/>
                   </g>
                 </pattern>
-                <clipPath id="gc-m"><path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z"/></clipPath>
-                <mask id="gm-m">
-                  <rect x="0" y="0" width="24" height="24" fill="#fff"/>
-                  <path d="M8.2 12.1 10.8 14.7 15.8 9.5" fill="none" stroke="#000" stroke-width="3.5"
-                    stroke-linecap="round" stroke-linejoin="round"/>
-                </mask>
-              </defs>
-              <path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z" fill="url(#gs-m)"/>
-              <g clip-path="url(#gc-m)" mask="url(#gm-m)" opacity="0.7">
-                <rect x="0" y="0" width="24" height="24" fill="url(#gp-m)"/>
-              </g>
-              <path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1.1"/>
-              <path d="M8.2 12.1 10.8 14.7 15.8 9.5" stroke="#ffffff" stroke-width="2.1"
-                stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+              <mask id="bm-band">
+                <g transform="translate(111.30 111.30) scale(12.0580)">
+                  <path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z" fill="#fff"/>
+                  <path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z" transform="translate(12 11.5) scale(0.74) translate(-12 -11.5)" fill="#000"/>
+                </g>
+              </mask></defs><rect width="512" height="512" rx="144.7" fill="url(#bm-tg)"/>
+              <g transform="translate(111.30 111.30) scale(12.0580)"><path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z" fill="url(#bm-sg)"/></g>
+              <g mask="url(#bm-band)" opacity="0.9"><rect width="512" height="512" fill="url(#bm-pat)"/></g>
+              <g transform="translate(111.30 111.30) scale(12.0580)" fill="none">
+                <path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z" stroke="#dcb978" stroke-opacity="0.95" stroke-width="1.15"/>
+                <path d="M12 2.2 3.8 5.4v6c0 4.6 3.2 7.9 8.2 9.4 5-1.5 8.2-4.8 8.2-9.4v-6L12 2.2Z" transform="translate(12 11.5) scale(0.74) translate(-12 -11.5)" stroke="#dcb978"
+                  stroke-opacity="0.75" stroke-width="0.85"/>
+                <path d="M8.2 12.1 10.8 14.7 15.8 9.5" stroke="#ffffff" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </g></svg>
           </span>
           <span class="wordmark">sh<span class="dot"></span>eld</span>
         </div>
