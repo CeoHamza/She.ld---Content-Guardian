@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <title>sh•eld – Parent App</title>
+    <title>Shieldora – Parent App</title>
     <style>
       :root {
         --green: #3fa15a;
@@ -1293,7 +1293,7 @@
             <div class="blurb">
               <div class="b-title" id="blurbTitle">Fully Protected</div>
               <div class="b-text" id="blurbText">
-                All filters are active on Adam's device. Today sh•eld blurred
+                All filters are active on Adam's device. Today Shieldora blurred
                 27 items and blocked 3 attempts to reach explicit content.
               </div>
             </div>
@@ -1878,7 +1878,7 @@
               </div>
             </div>
             <div class="lock-text" id="settingsLockText">
-              sh•eld cannot be turned off, deleted, or bypassed by Emma. Only
+              Shieldora cannot be turned off, deleted, or bypassed by Emma. Only
               you, as the parent, can change these settings with your PIN.
             </div>
             <span class="lock-pill">
@@ -2193,13 +2193,13 @@
           $("blurbTitle").textContent = "Needs review";
           $("blurbTitle").style.color = AMBER;
           $("blurbText").textContent =
-            `sh•eld blocked ${k.attempts} attempts and blurred ${k.blurred} ` +
+            `Shieldora blocked ${k.attempts} attempts and blurred ${k.blurred} ` +
             `items on ${k.name}'s device today. Some activity may need your attention.`;
         } else {
           $("blurbTitle").textContent = "Fully Protected";
           $("blurbTitle").style.color = "";
           $("blurbText").textContent =
-            `All filters are active on ${k.name}'s device. Today sh•eld ` +
+            `All filters are active on ${k.name}'s device. Today Shieldora ` +
             `blurred ${k.blurred} items and blocked ${k.attempts} attempts ` +
             `to reach explicit content.`;
         }
@@ -2212,7 +2212,7 @@
         $("activitySubtitle").textContent = `${k.name}'s device`;
         $("settingsSubtitle").textContent = `${k.name}'s device`;
         $("settingsLockText").textContent =
-          `sh•eld cannot be turned off, deleted, or bypassed by ${k.name}. Only you, as the parent, can change these settings with your PIN.`;
+          `Shieldora cannot be turned off, deleted, or bypassed by ${k.name}. Only you, as the parent, can change these settings with your PIN.`;
         $("settingsAgeText").textContent =
           `Currently: Pre-teen (Age 11) · Filtering strictness eases as ${k.name} gets older.`;
         $("settingsChildAvatar").textContent = k.initial;

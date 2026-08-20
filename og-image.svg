@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="sh•eld logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Shieldora logo">
   <defs>
     <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#4fbf6c"/>
@@ -11,5 +11,5 @@
     <path d="M32 8 14 15v12c0 9.3 5.7 15.8 18 20 12.3-4.2 18-10.7 18-20V15L32 8Z" fill="url(#g2)" fill-opacity="0.2" stroke="#ffffff" stroke-opacity="0.65" stroke-width="1.8"/>
     <path d="m22 31.5 6.8 6.8 12.2-12.8" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
-  <text x="460" y="320" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="180" font-weight="800" letter-spacing="-6" dominant-baseline="middle">sh•eld</text>
+  <text x="460" y="320" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="180" font-weight="800" letter-spacing="-6" dominant-baseline="middle">Shieldora</text>
 </svg>

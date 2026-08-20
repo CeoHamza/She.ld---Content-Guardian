@@ -82,7 +82,7 @@ def svg(key, s, sw, opacity, inner_octagon, tile=True):
     tile_bg = (f'<rect width="{TILE}" height="{TILE}" rx="{RX:.1f}" fill="url(#tg-{key})"/>'
                if tile else "")
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {TILE:.0f} {TILE:.0f}"
-     role="img" aria-label="sh-eld shield logo">
+     role="img" aria-label="Shieldora shield logo">
   <defs>
     <linearGradient id="tg-{key}" x1="0.281" y1="-0.103" x2="0.719" y2="1.103">
       <stop offset="0" stop-color="{GREEN_HI}"/><stop offset="1" stop-color="{GREEN_LO}"/>
@@ -146,7 +146,7 @@ if __name__ == "__main__":
 
     html = f'''<!doctype html>
 <meta charset="utf-8">
-<title>sh-eld logo variations</title>
+<title>Shieldora logo variations</title>
 <style>
   body {{ margin:0; padding:40px; background:#0c0d0f; color:#f4f5f6;
          font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }}
